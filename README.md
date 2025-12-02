@@ -15,6 +15,7 @@ verder had ik geen moeite
 Hier heb ik een array gemaakt, waneer je op a klikt, krijg je een verschilende Element 
 ![M2GDV_Array](https://github.com/user-attachments/assets/6d049d4b-5d10-44b3-81c8-54f88da96557)
 
+```C#
 -using UnityEngine;
 
 -public class RandomItems : MonoBehaviour
@@ -42,3 +43,4 @@ Hier heb ik een array gemaakt, waneer je op a klikt, krijg je een verschilende E
 -    }
 -}
 -
+```

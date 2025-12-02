@@ -7,4 +7,5 @@ De speler schiet een bal naar de muur. Die muur weerkaatst de bal. Die bal moet 
 # wat heb ik deze week gedaan?
 ![M2GDV_BallCollider+Hit!](https://github.com/user-attachments/assets/3e966ac4-7c99-4e2c-8890-48b1b8f35cfc)
 ik heb deze week gewerkt met AddForce. je kan de bal laten bewegen door op a te klikken. Ik heb ook een OnCollisionEnter toegevoegd, en een ridgit body+collider.
+
 verder had ik geen moeite 

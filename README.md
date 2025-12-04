@@ -2,7 +2,7 @@
 Title: Reverse Busters
 Genre: Physics-based arcade shootergame
 # Beschrijfing
-De speler schiet een bal naar de muur. Die muur weerkaatst de bal. Die bal moet proberen om de tegenstanders achter de speler te raken. Elke keer dat je een grote tegenstander raakt, krijg je 10 punten. bij elke kleine tegenstander krijg je 20 punten. als je 2 tegenstanders raakt, krijg je een double kill en krijg je dubbel de punten (bijvoorbeeld als je 2 kleine tegenstanders raakt krijg je 60 punten inplaats van 20) als ze je pakken, krijg je een game over scherm te zien.
+De speler schiet een bal naar de muur. Die muur weerkaatst de bal. Die bal moet proberen om de enemies achter de speler te raken. Elke keer dat je een grote enemy raakt, krijg je 10 punten. bij elke kleine tegenstander krijg je 20 punten. als je 2 tegenstanders raakt, krijg je een double kill en krijg je dubbel de punten (bijvoorbeeld als je 2 kleine tegenstanders raakt krijg je 60 punten inplaats van 20) als ze je pakken, krijg je een game over scherm te zien.
 # Gameplaykern
 - speler (een canon van de bovenperspectief
 - enemy (een groene zombie voor de kleine, en een groen/gele zombie voor de grote)

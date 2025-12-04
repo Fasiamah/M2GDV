@@ -59,3 +59,4 @@ public class RandomItems : MonoBehaviour
 
 ```
 ![Voorbeeld](voorbeeld.gif)
+<img src = "voorbeeld2.gif">

@@ -58,3 +58,4 @@ public class RandomItems : MonoBehaviour
 }
 
 ```
+![Voorbeeld](voorbeeld.gif)

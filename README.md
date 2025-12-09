@@ -61,3 +61,112 @@ public class RandomItems : MonoBehaviour
 # SkillGit Unity
 ![Voorbeeld](voorbeeld.gif)
 <img src = "voorbeeld2.gif">
+
+# 2.2 Mikken Schieten en LineRenderer
+
+
+![Mikken_LineRenderer](https://github.com/user-attachments/assets/fcc83935-f633-4966-9eee-bd8a14d67a22)
+
+code voor Schieten en LineRenderer
+
+```C#
+using UnityEngine;
+public class Shoot : MonoBehaviour
+{
+
+    [SerializeField] private float lineSpeed = 10f;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private float forceBuild = 20f;
+    [SerializeField] private float maximumHoldTime = 5f;
+
+    private LineRenderer _line;
+    private bool _lineActive = false;
+    private float _pressTimer = 0f;
+    private float _launchForce = 0f;
+
+    [SerializeField]private Vector3 offset = new Vector3(3.5f, 0f, 0f);
+
+    private void Start()
+    {
+        _line = GetComponent<LineRenderer>();
+        _line.SetPosition(1, offset);
+
+        
+
+
+    }
+
+
+    private void Update()
+    {
+        HandleShot();
+    }
+    private void HandleShot()
+    {
+        //Check of de linkermuisknop word ingedrukt (alleen het eerste moment van indrukken)
+        if (Input.GetMouseButtonDown(0))
+        {
+            _pressTimer = 0; //reset de timer weer op 0. Verderop gaan we de tijd hierin bijhouden hoe lang we de knop hebben ingehouden
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            /*bepaal de kracht die je bal moet krijgen. hoe langer je de knop hebt vastgehouden hoe meer kracht. Met forcebuild kun je deze kracht tweaken in de inspector. Dit is de kracht per seconde.*/
+            _launchForce = _pressTimer * forceBuild;
+
+            /*Instantiate maakt van een prefab een gameonject in je scene.
+            Er wordt dus een nieuwe bal in je scene aangemaakt.
+            Om nog meer met deze bal te kunnen in ons script slaan we hem op in een variabele
+            transform.parent verwijst naar de scene zodat de bal in de scene beland en niet in je kannon */
+            GameObject ball = Instantiate(prefab, transform.parent);
+
+            /*geef de bal dezelfde rotatie als het kanon zodat we heb de juiste richting op kunnen schieten.*/
+            ball.transform.rotation = transform.rotation;
+
+            /*Geef de Rigidbody van de bal een kracht (_launchForce) naar rechts mee op zijn eigen x-as. Doordat de bal goed geroteerd is gaat hij de goede kant op. ForceMode2D.Impulse zorgt dat alle kracht in 1 keer aan de bal gegeven wordt*/
+            ball.GetComponent<Rigidbody2D>().AddForce(ball.transform.right * _launchForce, ForceMode2D.Impulse);
+
+            /*Plaats de bal op dezelfde plek als het kanon zodat deze op die plek in de scene verschijnt*/
+            ball.transform.position = transform.position + transform.right * 1.5f;
+        }
+        /*Om te voorkomen dat we oneindige kracht mee kunnen geven beperken we de tijd die we maximaal bij gaan houden. Deze maximum tijd kunnen we in seconden instellen in de inspector (maximumHoldTime)*/
+        if (_pressTimer < maximumHoldTime)
+        {
+            /*Elk frame tellen we de duur van het frame op bij de verstreken tijd sinds we de knop in hebben gedrukt. Zodra we deze los laten weten we dus hoe lang dit duurde */
+            _pressTimer += Time.deltaTime;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                _pressTimer = 0f;
+                _lineActive = true;
+              
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+
+                //eerdere code....voor nu even overgeslagen
+
+
+                _lineActive = false;
+                _line.SetPosition(1, offset);
+            }
+
+            if (_lineActive)
+            {
+                _line.SetPosition(1, offset + (Vector3.right * _pressTimer * lineSpeed));
+                
+            }
+            
+        }
+    }
+
+
+}
+
+```
+
+# 3.1
+
+
+

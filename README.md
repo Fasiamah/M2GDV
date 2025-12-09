@@ -64,7 +64,9 @@ public class RandomItems : MonoBehaviour
 
 # 2.2 Mikken Schieten en LineRenderer
 
+in deze les had ik ervor gezorgd dat je de bal kon schieten via de kanon, en ik heb een line renderer toegevoegd.
 
+Voorbeeld
 ![Mikken_LineRenderer](https://github.com/user-attachments/assets/fcc83935-f633-4966-9eee-bd8a14d67a22)
 
 code voor Schieten en LineRenderer
@@ -166,7 +168,7 @@ public class Shoot : MonoBehaviour
 
 ```
 
-# 3.1
+# 3.1 Combos, Multiplier, Events
 
 
 

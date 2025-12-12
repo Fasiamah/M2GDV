@@ -270,4 +270,4 @@ public class ScoreManager : MonoBehaviour
 }
 ```
 
-4.1 Level design en UI
+# 4.1 Level design en UI

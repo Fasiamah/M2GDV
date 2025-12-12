@@ -168,7 +168,14 @@ public class Shoot : MonoBehaviour
 
 ```
 
-# 3.1 Combos, Multiplier, Events
+# 3.1/3.2 score triggers/ Combos, Multiplier, Events
 
+wat heb ik gedaan?
+ik heb een score en combo systeem toegevoegd aan de game.
+les 3.1 was een soort toevoeging van 3.2 des de reden waarom ik ze samen heb gevoegd
+
+![Score_Trigger](https://github.com/user-attachments/assets/86da7213-fc6c-46be-a6b2-ab36dacc191f)
+
+#4.1
 
 

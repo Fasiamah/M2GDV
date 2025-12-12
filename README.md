@@ -176,6 +176,96 @@ les 3.1 was een soort toevoeging van 3.2 des de reden waarom ik ze samen heb gev
 
 ![Score_Trigger](https://github.com/user-attachments/assets/86da7213-fc6c-46be-a6b2-ab36dacc191f)
 
-#4.1
+de code die ik ervoor heb gebruikt
+
+Combo System.cs
+```c#
+using System.Collections.Generic;
+using UnityEngine;
+public class ComboSystem : MonoBehaviour
+{
+    private List<string> bumperTags = new List<string>();   //lijst met geraakte tags
+    private int scoreMultiplier = 1;
+    private void Start()
+    {
+        BumperHit.onBumperHit += CheckForCombo;             //luisteren naar action event onBumperHit als game start
+    }
+    private void OnDisable()
+    {
+        BumperHit.onBumperHit -= CheckForCombo;             //stop met luisteren naar action event onBumperHit als scene herstart of game stopt
+    }
+    private void CheckForCombo(string tag, int bumperValue)
+    {
+        bumperTags.Add(tag);                                //tag toevoegen aan lijst
+        if (bumperTags.Count > 1)                           //check of er meer dan 1 tag is
+        {                                                   //check of de laatste 2 tags gelijk zijn
+            if (bumperTags[bumperTags.Count - 2] == bumperTags[bumperTags.Count - 1])
+            {
+                scoreMultiplier++;                          //verhoog de multiplier
+            }
+            else                                            //als ze niet gelijk zijn
+            {
+                scoreMultiplier = 1;                        //reset multiplier
+                bumperTags.Clear();                         //leeg de lijst met tags
+            }
+        }                                                   //voeg score toe aan de ScoreManager
+        ScoreManager.Instance.AddScore(bumperValue * scoreMultiplier);
+
+        //print score en multiplier in de console
+        Debug.Log($"Score: {ScoreManager.Instance.score} || Multiplier: {scoreMultiplier}X");
+    }
+}
+```
+BumperHit.cs
+```C#
+using System;
+using UnityEngine;
+public class BumperHit : MonoBehaviour
+{
+    [SerializeField] private int scoreValue = 100;
+    public static event Action<string, int> onBumperHit;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            onBumperHit?.Invoke(gameObject.tag, scoreValue);//bericht versturen dat er een bumper geraakt is. De tag en waarde sturen we mee
+
+        }
+    }
+}
+```
+Score Manager
+```C#
+using UnityEngine;
+
+public class ScoreManager : MonoBehaviour
+{
+    // Singleton
+    public static ScoreManager Instance;
+
+    // Totale score
+    public int score = 0;
 
 
+    private void Awake()
+    {
+        // controleren of er al een ScoreManager bestaat
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // dit is nu de enige ScoreManager in de scene
+        Instance = this;
+    }
+
+    // functie om punten toe te voegen
+    public void AddScore(int amount)
+    {
+        score = score + amount;
+        // debug voor testen
+        Debug.Log("Score: " + score);
+    }
+}
+```

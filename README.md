@@ -271,3 +271,111 @@ public class ScoreManager : MonoBehaviour
 ```
 
 # 4.1 Level design en UI
+
+Deze les had ik de volgende dingen toegevoegd:
+
+- Een UI
+- Een titelbar
+- Een knop dat ervoor Zorgt dat de titelbar weggaat
+
+
+Hier is een voorbeeld van wat ik had toegevoegd
+![UI](https://github.com/user-attachments/assets/f9feb906-a0fd-414b-bdcc-827654312897)
+
+daarnaast had ik ook een script toegevoegd zodat de UI weggaat op klikken van de start button
+
+```C#
+using UnityEngine;
+using TMPro;
+public class RemoveButton : MonoBehaviour
+
+{
+    public TMP_Text textfield;
+    public void Remove()
+    {
+       Destroy(gameObject);
+        Destroy(textfield);
+    }
+
+}
+```
+
+# 4.2 Scores Versturen
+-Insert Opdracht Here-
+
+# 5.2 Particles en Sound
+
+Ik heb deze les de volgende toegevoegd:
+- Particles
+- Sound
+
+In deze les had ik gewerkt aan het toevoegen van de partticles en het geluid
+voorbeeld van de opdracht (geluid kan je niet horen doordat het een gif is)
+![Particles_sound](https://github.com/user-attachments/assets/aead2433-79b1-4519-9271-2243a37b8194)
+
+hier zijn de scripts die ik had gebruikt (paar aanpassingen doordat de voorbeeld script niet volledig werkte):
+
+```C#
+using System;
+using UnityEngine;
+
+public class BumperHit : MonoBehaviour
+{
+    [SerializeField] private int bumperValue = 50;
+    [SerializeField] private int scoreValue = 100;
+
+    private ParticleSystem ps;
+
+    // Events
+    public static event Action<Transform, int> onHitBumper;
+    public static event Action<string, int> onBumperHit;
+
+    private void Start()
+    {
+        // Cache Particle System
+        ps = GetComponent<ParticleSystem>();
+        ps?.Stop();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            // Trigger both events
+            onHitBumper?.Invoke(transform, bumperValue);
+            onBumperHit?.Invoke(gameObject.tag, scoreValue);
+
+            // Restart particle system
+            ps?.Stop();
+            ps?.Play();
+        }
+    }
+}
+```
+De script voor het geluid
+
+```C#
+using UnityEngine;
+
+public class SoundManager : MonoBehaviour
+{
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            audioSource.Play();
+        }
+    }
+}
+```
+
+doordat het toevoege van de screen shake optioneel was had ik hem niet toegevoegd.
+
+

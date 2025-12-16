@@ -173,8 +173,10 @@ public class Shoot : MonoBehaviour
 wat heb ik gedaan?
 ik heb een score en combo systeem toegevoegd aan de game.
 les 3.1 was een soort toevoeging van 3.2 des de reden waarom ik ze samen heb gevoegd
-
-![Score_Trigger](https://github.com/user-attachments/assets/86da7213-fc6c-46be-a6b2-ab36dacc191f)
+```
+vanwegen problemen met de combo hit in deze opdracht zijn er paar dingen die ik later heb toegevoegd te zien op deze gif
+```
+![Multiplier Fix](https://github.com/user-attachments/assets/d27e79b8-d76b-4f32-a985-e0a9a023510c)
 
 de code die ik ervoor heb gebruikt
 
